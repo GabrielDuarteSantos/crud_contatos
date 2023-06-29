@@ -11,7 +11,7 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body class="bg-dark text-light">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-top: calc(var(--bs-gutter-x) * .5);">
             <div class="row">
                 <div class="col-2">
                     <img src="images/logo_alphacode.png" alt="Logo" class="img-fluid" />
@@ -22,33 +22,33 @@
             </div>
         </div>
         <form id="contact-form">
-            <div class="container-fluid">
-                <div class="row mt-3">
-                    <div class="col-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm mt-3">
                         <label for="fullName-input" class="form-label">Nome completo</label>
                         <input type="text" class="form-control" id="fullName-input" name="fullName" required>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-sm mt-3">
                         <label for="birthdate-input" class="form-label">Data de nascimento</label>
                         <input type="date" class="form-control" id="birthdate-input" name="birthdate" required>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm mt-3">
                         <label for="email-input" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="email-input" name="email" required>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-sm mt-3">
                         <label for="occupation-input" class="form-label">Profissão</label>
                         <input type="text" class="form-control" id="occupation-input" name="occupation" required>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm mt-3">
                         <label for="landline-input" class="form-label">Telefone para contato</label>
                         <input type="text" class="form-control" id="landline-input" name="landline">
                     </div>
-                    <div class="col-sm">
+                    <div class="col-sm mt-3">
                         <label for="phone-input" class="form-label">Celular para contato</label>
                         <input type="text" class="form-control" id="phone-input" name="phoneNumber">
                     </div>
@@ -67,7 +67,7 @@
                         <label class="form-check-label" for="sms-notify-check">Enviar notificações por SMS</label>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row">
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
