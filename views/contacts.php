@@ -84,7 +84,17 @@
                 </tr>
             </thead>
             <tbody id="contacts-list"></tbody>
-            </table>
+        </table>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-5 border-top">
+                <div>Termos | Políticas</div>
+                <div>
+                    &copy; Copyright 2023 | Desenvolvido por
+                    <img src="images/logo_rodape_alphacode.png" alt="Logo rodapé" Style="height: 50px;" />
+                </div>
+                <div>&copy; Alphacode IT Solutions 2023</div>
+            </footer>
+        </div>
         <div class="toast bg-light text-dark" style="position: absolute; top: 10px; right: 10px;">
             <div class="toast-body"></div>
         </div>
