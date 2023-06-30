@@ -20,6 +20,12 @@ class ContactsController {
 
     }
 
+    public static function updateDeleteById($id) {
+
+        return Contact::updateDeleteById($id);
+
+    }
+
     private static function processData($contactData) {
 
         $contactFields = [

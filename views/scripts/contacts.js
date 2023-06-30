@@ -9,6 +9,15 @@ let showToast = message => {
 
 };
 
+let deleteContact = id => {
+
+    return $.ajax({
+        'url': `${location.href}api/contact/delete/${id}`,
+        'method': 'PATCH',
+    });
+
+};
+
 let listContacts = async () => {
 
     let contacts;
@@ -25,9 +34,9 @@ let listContacts = async () => {
 
     } catch (err) {
 
-        console.log(err);
+        console.error(err);
 
-        showToast('Ocorreu um erro ao listar os contatos!');
+        showToast('Não foi possível listar os contatos!');
 
         return;
 
@@ -38,14 +47,39 @@ let listContacts = async () => {
         let formattedBirthdate = contact.birthdate.split('-').reverse().join('/');
         let contactNumber = contact.phone_number || contact.landline_number || '-';
 
-        return $(`
+        let elm = $(`
             <tr>
                 <td>${contact.full_name}</td>
                 <td>${formattedBirthdate}</td>
                 <td>${contact.email}</td>
                 <td>${contactNumber}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm delete-contact-btn">Excluir</button>
+                </td>
             </tr>
         `);
+
+        elm.find('.delete-contact-btn').on('click', async () => {
+
+            try {
+
+                await deleteContact(contact.id);
+
+            } catch (err) {
+
+                console.error(err);
+
+                showToast('Ocorreu um erro ao excluir o contato!');
+
+            }
+
+            elm.remove();
+
+            showToast(`Contato "${contact.full_name}" excluído com sucesso!`);
+
+        });
+
+        return elm;
 
     });
 
@@ -76,9 +110,9 @@ formELm.on('submit', async event => {
             value = inputElm.value.trim();
 
             if (!value && inputElm.getAttribute('required')) {
-    
+
                 return false;
-    
+
             }
 
         }
@@ -99,6 +133,7 @@ formELm.on('submit', async event => {
 
     }
 
+    // rota de cadastro suporta multiplos email/profissões por contato
     contact.emails = [contact.email];
     contact.occupations = [contact.occupation];
 
@@ -108,17 +143,15 @@ formELm.on('submit', async event => {
     submitBtnElm.attr('disabled', true);
     submitBtnElm.text('Cadastrando...');
 
-    let createResponse;
-
     try {
 
-        createResponse = await $.post(`${location.href}api/contact`, { contact });
+        await $.post(`${location.href}api/contact`, { contact });
 
     } catch (err) {
 
-        console.log(err);
+        console.error(err);
 
-        showToast('Ocorreu um erro ao cadastrar o contato!');
+        showToast('Não foi possível cadastrar o contato!');
 
         return;
 
@@ -128,8 +161,6 @@ formELm.on('submit', async event => {
         submitBtnElm.text('Cadastrar');
 
     }
-    
-    console.log(createResponse);
 
     inputElms.val('');
 

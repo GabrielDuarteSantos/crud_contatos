@@ -15,10 +15,7 @@ class Occupation {
     public function create() {
 
         $db = Database::getConnection();
-
-        $query = 'INSERT INTO occupations (`name`) VALUES (?)';
-
-        $statement = $db->prepare($query);
+        $statement = $db->prepare('INSERT INTO occupations (`name`) VALUES (?)');
 
         $statement->bindValue(1, $this->name);
         $statement->execute();
@@ -30,10 +27,7 @@ class Occupation {
     public static function getByName($name) {
 
         $db = Database::getConnection();
-
-        $query = 'SELECT * FROM occupations WHERE `name` = ?';
-
-        $statement = $db->prepare($query);
+        $statement = $db->prepare('SELECT * FROM occupations WHERE `name` = ?');
 
         $statement->bindValue(1, $name);
         $statement->execute();

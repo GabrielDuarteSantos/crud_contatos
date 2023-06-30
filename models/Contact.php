@@ -30,10 +30,9 @@ class Contact {
 
         $query = '
             INSERT INTO contacts (
-                full_name, birthdate, landline_number, phone_number, phone_number_has_whatsapp, send_email_notifications, send_sms_notifications
-            ) VALUES (
-                ?, ?, ?, ?, ?, ?, ?
-            )
+                full_name, birthdate, landline_number, phone_number, 
+                phone_number_has_whatsapp, send_email_notifications, send_sms_notifications
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
         ';
 
         $statement = $db->prepare($query);
@@ -57,9 +56,10 @@ class Contact {
 
         $query = '
             SELECT 
-                cont.full_name, cont.birthdate, cont.landline_number, cont.phone_number, emails.email
+                cont.id, cont.full_name, cont.birthdate, cont.landline_number, cont.phone_number, emails.email
             FROM contacts cont
             INNER JOIN contacts_emails emails ON cont.id = emails.contacts_fk
+            WHERE cont.deleted = 0
             GROUP BY cont.id
             ORDER BY cont.id DESC
         ';
@@ -69,6 +69,18 @@ class Contact {
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function updateDeleteById($id) {
+
+        $db = Database::getConnection();
+        $statement = $db->prepare('UPDATE contacts SET deleted = 1 WHERE id = ?');
+
+        $statement->bindValue(1, $id);
+        $statement->execute();
+
+        return ['id' => $id];
 
     }
 

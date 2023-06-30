@@ -17,10 +17,7 @@ class Email {
     public function create() {
 
         $db = Database::getConnection();
-
-        $query = 'INSERT INTO contacts_emails (email, contacts_fk) VALUES (?, ?)';
-
-        $statement = $db->prepare($query);
+        $statement = $db->prepare('INSERT INTO contacts_emails (email, contacts_fk) VALUES (?, ?)');
 
         $statement->bindValue(1, $this->email);
         $statement->bindValue(2, $this->contacts_fk);

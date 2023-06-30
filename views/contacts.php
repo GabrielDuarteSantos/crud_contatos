@@ -95,7 +95,7 @@
                 <div>&copy; Alphacode IT Solutions 2023</div>
             </footer>
         </div>
-        <div class="toast bg-light text-dark" style="position: absolute; top: 10px; right: 10px;">
+        <div class="toast bg-light text-dark" style="position: fixed; top: 10px; right: 10px;">
             <div class="toast-body"></div>
         </div>
     </body>
