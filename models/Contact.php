@@ -5,7 +5,7 @@ require_once 'Database.php';
 class Contact {
 
     private $full_name;
-    private $birth_date;
+    private $birthdate;
     private $landline_number;
     private $phone_number;
     private $phone_number_has_whatsapp;
@@ -14,13 +14,13 @@ class Contact {
 
     public function __construct($contactData) {
         
-        $this->full_name = $contactData['fullName'];
-        $this->birth_date = $contactData['birthdate'];
-        $this->landline_number = $contactData['landline'];
-        $this->phone_number = $contactData['phoneNumber'];
-        $this->phone_number_has_whatsapp = $contactData['hasWhatsapp'];
-        $this->send_email_notifications = $contactData['notifyEmail'];
-        $this->send_sms_notifications = $contactData['notifySms'];
+        $this->full_name = $contactData['full_name'];
+        $this->birthdate = $contactData['birthdate'];
+        $this->landline_number = $contactData['landline_number'];
+        $this->phone_number = $contactData['phone_number'];
+        $this->phone_number_has_whatsapp = $contactData['phone_number_has_whatsapp'];
+        $this->send_email_notifications = $contactData['send_email_notifications'];
+        $this->send_sms_notifications = $contactData['send_sms_notifications'];
 
     }
 
@@ -30,7 +30,7 @@ class Contact {
 
         $query = '
             INSERT INTO contacts (
-                full_name, birth_date, landline_number, phone_number, phone_number_has_whatsapp, send_email_notifications, send_sms_notifications
+                full_name, birthdate, landline_number, phone_number, phone_number_has_whatsapp, send_email_notifications, send_sms_notifications
             ) VALUES (
                 ?, ?, ?, ?, ?, ?, ?
             )
@@ -39,7 +39,7 @@ class Contact {
         $statement = $db->prepare($query);
 
         $statement->bindValue(1, $this->full_name);
-        $statement->bindValue(2, $this->birth_date);
+        $statement->bindValue(2, $this->birthdate);
         $statement->bindValue(3, $this->landline_number);
         $statement->bindValue(4, $this->phone_number);
         $statement->bindValue(5, $this->phone_number_has_whatsapp);
@@ -57,20 +57,18 @@ class Contact {
 
         $query = '
             SELECT 
-                cont.full_name, cont.birth_date, cont.landline_number, cont.phone_number, emails.email
+                cont.full_name, cont.birthdate, cont.landline_number, cont.phone_number, emails.email
             FROM contacts cont
             INNER JOIN contacts_emails emails ON cont.id = emails.contacts_fk
             GROUP BY cont.id
-            ORDER BY CONT.id DESC
+            ORDER BY cont.id DESC
         ';
 
         $statement = $db->prepare($query);
 
         $statement->execute();
 
-        $contacts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $contacts;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
 
     }
 

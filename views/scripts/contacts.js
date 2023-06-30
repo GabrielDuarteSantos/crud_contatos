@@ -29,7 +29,7 @@ let listContacts = async () => {
 
     let contactRows = contacts.map(contact => {
 
-        let formattedBirthdate = contact.birth_date.split('-').reverse().join('/');
+        let formattedBirthdate = contact.birthdate.split('-').reverse().join('/');
         let contactNumber = contact.phone_number || contact.landline_number || '-';
 
         return $(`
@@ -97,6 +97,7 @@ formELm.on('submit', async event => {
     contact.occupations = [contact.occupation];
 
     delete contact.email;
+    delete contact.occupation;
 
     submitBtnElm.attr('disabled', true);
     submitBtnElm.text('Cadastrando...');

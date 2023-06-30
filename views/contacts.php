@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-sm mt-3">
                         <label for="fullName-input" class="form-label">Nome completo</label>
-                        <input type="text" class="form-control" id="fullName-input" name="fullName" required>
+                        <input type="text" class="form-control" id="fullName-input" name="full_name" required>
                     </div>
                     <div class="col-sm mt-3">
                         <label for="birthdate-input" class="form-label">Data de nascimento</label>
@@ -46,24 +46,24 @@
                 <div class="row">
                     <div class="col-sm mt-3">
                         <label for="landline-input" class="form-label">Telefone para contato</label>
-                        <input type="text" class="form-control" id="landline-input" name="landline">
+                        <input type="text" class="form-control" id="landline-input" name="landline_number">
                     </div>
                     <div class="col-sm mt-3">
                         <label for="phone-input" class="form-label">Celular para contato</label>
-                        <input type="text" class="form-control" id="phone-input" name="phoneNumber">
+                        <input type="text" class="form-control" id="phone-input" name="phone_number">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                        <input class="form-check-input" type="checkbox" id="whatsapp-check" name="hasWhatsapp">
+                        <input class="form-check-input" type="checkbox" id="whatsapp-check" name="phone_number_has_whatsapp">
                         <label class="form-check-label" for="whatsapp-check">Número de celular possui Whatsapp</label>
                     </div>
                     <div class="col-6">
-                        <input class="form-check-input" type="checkbox" id="email-notify-check" name="notifyEmail">
+                        <input class="form-check-input" type="checkbox" id="email-notify-check" name="send_email_notifications">
                         <label class="form-check-label" for="email-notify-check">Enviar notificações por E-mail</label>
                     </div>
                     <div class="col-6">
-                        <input class="form-check-input" type="checkbox" id="sms-notify-check" name="notifySms">
+                        <input class="form-check-input" type="checkbox" id="sms-notify-check" name="send_sms_notifications">
                         <label class="form-check-label" for="sms-notify-check">Enviar notificações por SMS</label>
                     </div>
                 </div>

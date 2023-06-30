@@ -22,7 +22,16 @@ class ContactsController {
 
     private static function processData($contactData) {
 
-        $contactFields = ['fullName', 'birthdate', 'landline', 'phoneNumber', 'hasWhatsapp', 'notifyEmail', 'notifySms'];
+        $contactFields = [
+            'full_name', 
+            'birthdate', 
+            'landline_number', 
+            'phone_number', 
+            'phone_number_has_whatsapp', 
+            'send_email_notifications', 
+            'send_sms_notifications'
+        ];
+
         $processedData = [];
 
         foreach ($contactFields as $field) {
@@ -44,9 +53,17 @@ class ContactsController {
 
         }
 
-        $processedData['hasWhatsapp'] = (int)filter_var($processedData['hasWhatsapp'], FILTER_VALIDATE_BOOLEAN);
-        $processedData['notifyEmail'] = (int)filter_var($processedData['notifyEmail'], FILTER_VALIDATE_BOOLEAN);
-        $processedData['notifySms'] = (int)filter_var($processedData['notifySms'], FILTER_VALIDATE_BOOLEAN);
+        $contactFields = [
+            'phone_number_has_whatsapp', 
+            'send_email_notifications', 
+            'send_sms_notifications'
+        ];
+
+        foreach ($contactFields as $field) {
+
+            $processedData[$field] = (int)filter_var($processedData[$field], FILTER_VALIDATE_BOOLEAN);
+
+        }
 
         return $processedData;
 
