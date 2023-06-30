@@ -14,7 +14,7 @@
         <div class="container-fluid" style="padding-top: calc(var(--bs-gutter-x) * .5);">
             <div class="row">
                 <div class="col-2">
-                    <img src="images/logo_alphacode.png" alt="Logo" class="img-fluid" />
+                    <img src="images/logo_alphacode.png" alt="Logo" class="img-fluid rounded" />
                 </div>
                 <div class="col-10 align-self-center">
                     <h1 class="text-info">Cadastro de contatos</h1>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </form>
-        <table class="table table-dark mt-5">
+        <table class="table table-dark table-striped table-borderless text-center mt-5">
             <thead>
                 <tr>
                     <th>Nome</th>
