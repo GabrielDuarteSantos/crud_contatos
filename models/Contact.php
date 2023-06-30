@@ -45,7 +45,6 @@ class Contact {
         $statement->bindValue(5, $this->phone_number_has_whatsapp);
         $statement->bindValue(6, $this->send_email_notifications);
         $statement->bindValue(7, $this->send_sms_notifications);
-
         $statement->execute();
 
         return ['id' => $db->lastInsertId()];

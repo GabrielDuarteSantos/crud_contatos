@@ -24,7 +24,6 @@ class Email {
 
         $statement->bindValue(1, $this->email);
         $statement->bindValue(2, $this->contacts_fk);
-
         $statement->execute();
 
         return ['id' => $db->lastInsertId()];

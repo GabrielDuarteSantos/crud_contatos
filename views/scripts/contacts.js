@@ -15,7 +15,7 @@ let listContacts = async () => {
 
     try {
 
-        contacts = await $.ajax(`${location.href}contacts`);
+        contacts = await $.ajax(`${location.href}api/contacts`);
 
     } catch (err) {
 
@@ -94,6 +94,7 @@ formELm.on('submit', async event => {
     }
 
     contact.emails = [contact.email];
+    contact.occupations = [contact.occupation];
 
     delete contact.email;
 
@@ -104,7 +105,7 @@ formELm.on('submit', async event => {
 
     try {
 
-        createResponse = await $.post(`${location.href}contact`, { contact });
+        createResponse = await $.post(`${location.href}api/contact`, { contact });
 
     } catch (err) {
 
