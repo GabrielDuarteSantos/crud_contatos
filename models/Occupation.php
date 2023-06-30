@@ -38,8 +38,7 @@ class Occupation {
         $statement->bindValue(1, $name);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
-
+        return $statement->fetch(PDO::FETCH_ASSOC);
 
     }
 
