@@ -17,6 +17,12 @@ let listContacts = async () => {
 
         contacts = await $.ajax(`${location.href}api/contacts`);
 
+        if (!Array.isArray(contacts)) {
+
+            throw new Error('Invalid response');
+
+        }
+
     } catch (err) {
 
         console.log(err);
