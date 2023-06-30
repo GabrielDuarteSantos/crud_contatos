@@ -6,11 +6,15 @@ class EmailsController {
 
     public static function createMultiple($emails, $contactId) {
 
+        $dbEmails = [];
+
         foreach ($emails as $email) {
 
-            self::create($email, $contactId);
+            $dbEmails[] = self::create($email, $contactId);
 
         }
+
+        return $dbEmails;
 
     }
 
