@@ -70,6 +70,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-center">
+                        <button type="reset" class="btn btn-danger" style="display: none;">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
                 </div>
@@ -82,7 +83,7 @@
                     <th>Data de nascimento</th>
                     <th>E-mail</th>
                     <th>Número para contato</th>
-                    <th>Ações</th>
+                    <th colspan="2">Ações</th>
                 </tr>
             </thead>
             <tbody id="contacts-list"></tbody>

@@ -51,6 +51,12 @@ $app->get('/api/contacts', function (Request $request, Response $response) {
 
 });
 
+$app->put('/api/contact', function (Request $request, Response $response) {
+
+    return $response;
+
+});
+
 $app->patch('/api/contact/delete/{id}', function (Request $request, Response $response, $args) {
 
     ContactsController::updateDeleteById($args['id']);

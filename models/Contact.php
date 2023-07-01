@@ -56,12 +56,15 @@ class Contact {
 
         $query = '
             SELECT 
-                cont.id, cont.full_name, cont.birthdate, cont.landline_number, cont.phone_number, emails.email
-            FROM contacts cont
-            INNER JOIN contacts_emails emails ON cont.id = emails.contacts_fk
-            WHERE cont.deleted = 0
-            GROUP BY cont.id
-            ORDER BY cont.id DESC
+                contacts.id, contacts.full_name, contacts.birthdate, contacts.landline_number, contacts.phone_number, 
+                emails.email, occupations.name occupation
+            FROM contacts
+            INNER JOIN contacts_emails emails ON contacts.id = emails.contacts_fk
+            INNER JOIN contacts_occupations cont_occup ON contacts.id = cont_occup.contacts_fk
+            INNER JOIN occupations ON cont_occup.occupations_fk = occupations.id
+            WHERE contacts.deleted = 0
+            GROUP BY contacts.id
+            ORDER BY contacts.id DESC
         ';
 
         $statement = $db->prepare($query);

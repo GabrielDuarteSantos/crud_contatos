@@ -1,3 +1,10 @@
+let formELm = $('#contact-form');
+let submitBtnElm = formELm.find('button[type="submit"]');
+let cancelUpdateBtn = $('button[type="reset"]');
+
+formELm.find('input[name="landline_number"]').mask('(00) 0000-0000');
+formELm.find('input[name="phone_number"]').mask('(00) 0 0000-0000');
+
 let toastElm = $('.toast').toast({
     'delay': 3000,
 });
@@ -6,6 +13,34 @@ let showToast = message => {
 
     toastElm.find('.toast-body').text(message);
     toastElm.toast('show');
+
+};
+
+let updatingContactId;
+
+let initContactUpdate = contact => {
+
+    updatingContactId = contact.id;
+
+    for (let field in contact) {
+
+        formELm.find(`input[name="${field}"]`).val(contact[field]);
+
+    }
+
+    formELm.find('input[name="landline_number"], input[name="phone_number"]').trigger('input');
+
+    submitBtnElm.text('Atualizar');
+    cancelUpdateBtn.show();
+
+};
+
+let cancelContactUpdate = () => {
+
+    updatingContactId = null;
+
+    submitBtnElm.text('Cadastrar');
+    cancelUpdateBtn.hide();
 
 };
 
@@ -54,10 +89,19 @@ let listContacts = async () => {
                 <td>${contact.email}</td>
                 <td>${contactNumber}</td>
                 <td>
+                    <button class="btn btn-secondary btn-sm update-contact-btn">Editar</button>
+                </td>
+                <td>
                     <button class="btn btn-danger btn-sm delete-contact-btn">Excluir</button>
                 </td>
             </tr>
         `);
+
+        elm.find('.update-contact-btn').on('click', () => {
+
+            initContactUpdate(contact);
+
+        });
 
         elm.find('.delete-contact-btn').on('click', async () => {
 
@@ -86,13 +130,6 @@ let listContacts = async () => {
     $('#contacts-list').html(contactRows);
 
 };
-
-let formELm = $('#contact-form');
-
-formELm.find('input[name="landline_number"]').mask('(00) 0000-0000');
-formELm.find('input[name="phone_number"]').mask('(00) 0 0000-0000');
-
-let submitBtnElm = formELm.find('button[type="submit"]');
 
 formELm.on('submit', async event => {
 
@@ -150,15 +187,29 @@ formELm.on('submit', async event => {
     submitBtnElm.attr('disabled', true);
     submitBtnElm.text('Cadastrando...');
 
+    let requestOpts = {
+        'url': `${location.href}api/contact`,
+        'method': 'POST',
+        'data': { contact },
+    };
+
+    if (updatingContactId) {
+
+        requestOpts.method = 'PUT';
+
+        contact.id = updatingContactId;
+
+    }
+
     try {
 
-        await $.post(`${location.href}api/contact`, { contact });
+        await $.ajax(requestOpts);
 
     } catch (err) {
 
         console.error(err);
 
-        showToast('Não foi possível cadastrar o contato!');
+        showToast('Não foi possível salvar o contato!');
 
         return;
 
@@ -167,13 +218,21 @@ formELm.on('submit', async event => {
         submitBtnElm.attr('disabled', false);
         submitBtnElm.text('Cadastrar');
 
+        cancelContactUpdate();
+
     }
 
     inputElms.val('');
 
-    showToast('Contato cadastrado com sucesso!');
+    showToast('Contato salvo com sucesso!');
 
     listContacts();
+
+});
+
+cancelUpdateBtn.on('click', () => {
+
+    cancelContactUpdate();
 
 });
 
