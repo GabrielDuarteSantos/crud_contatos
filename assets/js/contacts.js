@@ -88,6 +88,10 @@ let listContacts = async () => {
 };
 
 let formELm = $('#contact-form');
+
+formELm.find('input[name="landline_number"]').mask('(00) 0000-0000');
+formELm.find('input[name="phone_number"]').mask('(00) 0 0000-0000');
+
 let submitBtnElm = formELm.find('button[type="submit"]');
 
 formELm.on('submit', async event => {
@@ -132,6 +136,9 @@ formELm.on('submit', async event => {
         return;
 
     }
+
+    contact.landline_number = contact.landline_number.replace(/\D/g, '');
+    contact.phone_number = contact.phone_number.replace(/\D/g, '');
 
     // rota de cadastro suporta multiplos email/profissões por contato
     contact.emails = [contact.email];

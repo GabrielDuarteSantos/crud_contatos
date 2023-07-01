@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="assets/css/bootstrap-5.3.0/bootstrap.min.css">
-        <!-- <script defer src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> -->
         <script defer src="assets/js/jquery-3.7.0/jquery.min.js"></script>
         <script defer src="assets/js/jquery-3.7.0/jquery.mask.min.js"></script>
         <script defer src="assets/js/bootstrap-5.3.0/bootstrap.bundle.min.js"></script>
@@ -83,6 +82,7 @@
                     <th>Data de nascimento</th>
                     <th>E-mail</th>
                     <th>Número para contato</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="contacts-list"></tbody>
